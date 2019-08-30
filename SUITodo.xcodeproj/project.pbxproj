@@ -16,6 +16,8 @@
 		07DDA26B2319CBFD00E6C5C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07DDA2692319CBFD00E6C5C9 /* LaunchScreen.storyboard */; };
 		07DDA2762319CBFD00E6C5C9 /* SUITodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA2752319CBFD00E6C5C9 /* SUITodoTests.swift */; };
 		07DDA2812319CBFE00E6C5C9 /* SUITodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA2802319CBFE00E6C5C9 /* SUITodoUITests.swift */; };
+		07DDA28F2319CFAD00E6C5C9 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA28E2319CFAD00E6C5C9 /* ToDoItem.swift */; };
+		07DDA2912319DB1800E6C5C9 /* ToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA2902319DB1800E6C5C9 /* ToDoItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		07DDA27C2319CBFD00E6C5C9 /* SUITodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SUITodoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DDA2802319CBFE00E6C5C9 /* SUITodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUITodoUITests.swift; sourceTree = "<group>"; };
 		07DDA2822319CBFE00E6C5C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07DDA28E2319CFAD00E6C5C9 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		07DDA2902319DB1800E6C5C9 /* ToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +108,13 @@
 				07DDA25B2319CBFB00E6C5C9 /* AppDelegate.swift */,
 				07DDA25D2319CBFB00E6C5C9 /* SceneDelegate.swift */,
 				07DDA2622319CBFB00E6C5C9 /* ContentView.swift */,
+				07DDA2902319DB1800E6C5C9 /* ToDoItemView.swift */,
 				07DDA2642319CBFD00E6C5C9 /* Assets.xcassets */,
 				07DDA2692319CBFD00E6C5C9 /* LaunchScreen.storyboard */,
 				07DDA26C2319CBFD00E6C5C9 /* Info.plist */,
 				07DDA25F2319CBFB00E6C5C9 /* SUITodo.xcdatamodeld */,
 				07DDA2662319CBFD00E6C5C9 /* Preview Content */,
+				07DDA28E2319CFAD00E6C5C9 /* ToDoItem.swift */,
 			);
 			path = SUITodo;
 			sourceTree = "<group>";
@@ -271,7 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DDA25C2319CBFB00E6C5C9 /* AppDelegate.swift in Sources */,
+				07DDA2912319DB1800E6C5C9 /* ToDoItemView.swift in Sources */,
 				07DDA25E2319CBFB00E6C5C9 /* SceneDelegate.swift in Sources */,
+				07DDA28F2319CFAD00E6C5C9 /* ToDoItem.swift in Sources */,
 				07DDA2632319CBFB00E6C5C9 /* ContentView.swift in Sources */,
 				07DDA2612319CBFB00E6C5C9 /* SUITodo.xcdatamodeld in Sources */,
 			);
