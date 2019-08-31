@@ -9,29 +9,52 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var newTodoItem:String = ""
+    
+    var body: some View {
+        ToDoListView(newTodoItem: $newTodoItem)
+    }
+}
+
+struct ToDoListView:View {
+    @Binding  var newTodoItem:String
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: ToDoItem.getAllToDoItems()) var todoItems:FetchedResults<ToDoItem>
-    @State private var newTodoItem = ""
     
+    func dateCreated(dt:Date?) -> String {
+        guard dt != nil else {return ""}
+        let df:DateFormatter = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        df.dateStyle = .medium
+        return df.string(from: dt!)
+    }
+    
+    func titled(named:String?)->String {
+        guard named != nil, !named!.trimmingCharacters(in: .whitespaces).isEmpty else {return ""}
+        return named!
+    }
     var body: some View {
         NavigationView{
             List{
                 Section(header: Text("What's Next")){
-                    HStack{
+                    HStack {
                         TextField("New Item",text:$newTodoItem)
                         Button(action: {
+                            if !self.$newTodoItem.wrappedValue.trimmingCharacters(in: .whitespaces).isEmpty {
+                                
                             let todoItem = ToDoItem(context: self.managedObjectContext)
                             todoItem.createdAt = Date()
                             todoItem.title = self.newTodoItem
-                            
-                            do{
+                          
+                            do {
                                 try self.managedObjectContext.save()
-                            }catch{
+                            } catch {
                                 print(error)
+                                }
+                                self.newTodoItem = ""
                             }
-                            
-                            self.newTodoItem = ""
                         }) {
+                            //#imageLiteral(resourceName: "np_plus-circle_1144108_000000")
                             Image(systemName: "plus.circle.fill")
                                 .foregroundColor(.green)
                                 .imageScale(.large)
@@ -40,24 +63,24 @@ struct ContentView: View {
                 }.font(.headline)
                 Section(header:Text("To Do's")){
                     ForEach(self.todoItems){ todoItem in
-                        ToDoItemView(title:todoItem.title!,createdAt:"\(String(describing: todoItem.createdAt))")
-                    }.onDelete { indexSet in
-                        let deleteItem = self.todoItems[indexSet.first!]
-                        self.managedObjectContext.delete(deleteItem)
-                        do{
-                            try self.managedObjectContext.save()
-                        }catch{
-                            print(error)
-                        }
+                        ToDoItemView(title: self.titled(named:todoItem.title), createdAt: self.dateCreated(dt:todoItem.createdAt))
                         
+                    }.onDelete { indexSet in
+                        if let currentIndex = indexSet.first{
+                            let deleteItem = self.todoItems[currentIndex]
+                            do{
+                                self.managedObjectContext.delete(deleteItem)
+                                try self.managedObjectContext.save()
+                            }catch{
+                                print(error)
+                            }
+                        }
                     }
                 }
             }
             .navigationBarTitle(Text("My Items"))
             .navigationBarItems(trailing: EditButton())
         }
-       
-        
     }
 }
 
